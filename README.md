@@ -277,6 +277,11 @@ Only three regularizers are tested on the LoRA weights: L1, L2, and the FE-based
 
 LoRA rank r and where the adapter is attached are fixed choices (last layer only, single r). LoRA strength is applied as a simple scalar mixer. We do not explore more complex mixing schedules or training LoRA jointly under different strengths. This makes it unclear whether the FE regularizer would still behave similarly for different LoRA designs.
 
-## 9. Credits
+## 9. Conclusion
 
-This project was developed as an educational experiment on NeuroAI, catastrophic forgetting, and Free-Energy–inspired regularization.  I would like to thank Professor Weinan Sun and TA Ivan for their guidance, advice, and feedback throughout the development of this work.
+In this project, we study catastrophic forgetting in a simple continual-learning setup, where a LoRA-augmented classifier is first trained on Task A and then adapted to Task B. We compare four settings for training the LoRA adapter on Task B: no regularization, standard L1 and L2 weight regularization, and a free-energy (FE)–based regularizer that explicitly penalizes surprise on the original task. Without regularization, the model drifts toward Task B and forgets much of Task A. Our experiments show that while L1 freezes the base model, allowing little to no new learning. L2 and FE regularization both help stabilize performance, but the FE term offers the most balanced stability–plasticity trade-off where it preserves Task-A accuracy better while still allowing learning for Task B. Overall, this suggests that free-energy–inspired objectives are a potential promising way to control catastrophic forgetting.
+
+
+## 10. Credits
+
+This project was developed as an educational experiment on NeuroAI, catastrophic forgetting, and Free-Energy–inspired regularization. The initial idea for using the Free Energy Principle in this setting was inspired by Artem Kirsanov’s YouTube “A Universal Theory of Brain Function.” I would also like to thank Professor Weinan Sun and TA Ivan for their guidance, advice, and feedback throughout the development of this work.
